@@ -1,0 +1,859 @@
+{
+  "source": {
+    "hash": "0xacaa7bd15a7b9465ab5e931575ea4ec353ee4511faf812a653fafc19890b45ef",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.74.1",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "tournament",
+    "version": "0.1.0",
+    "authors": ["[your_name] <[your_email]>"]
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "creator",
+            "type": {
+              "displayName": ["AccountId"],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink_primitives", "ConstructorResult"],
+          "type": 8
+        },
+        "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [
+          {
+            "label": "creator",
+            "type": {
+              "displayName": ["AccountId"],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "default",
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink_primitives", "ConstructorResult"],
+          "type": 8
+        },
+        "selector": "0xed4b9d1b"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": ["AccountId"],
+        "type": 1
+      },
+      "balance": {
+        "displayName": ["Balance"],
+        "type": 4
+      },
+      "blockNumber": {
+        "displayName": ["BlockNumber"],
+        "type": 0
+      },
+      "chainExtension": {
+        "displayName": ["ChainExtension"],
+        "type": 18
+      },
+      "hash": {
+        "displayName": ["Hash"],
+        "type": 16
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": ["Timestamp"],
+        "type": 17
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": ["ink", "LangError"],
+      "type": 10
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "total_player",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "create_tournament",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 8
+        },
+        "selector": "0x5afd3726"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "register_tournament",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 8
+        },
+        "selector": "0x34f44a59"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          },
+          {
+            "label": "player_a",
+            "type": {
+              "displayName": ["AccountId"],
+              "type": 1
+            }
+          },
+          {
+            "label": "player_b",
+            "type": {
+              "displayName": ["AccountId"],
+              "type": 1
+            }
+          },
+          {
+            "label": "winner",
+            "type": {
+              "displayName": ["AccountId"],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "update_winner",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 8
+        },
+        "selector": "0x4aa4ec41"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "claim_reward",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 8
+        },
+        "selector": "0x9a8353a7"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_game_detail",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 11
+        },
+        "selector": "0x9e9ac5b0"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_game_players",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 13
+        },
+        "selector": "0xc177eaeb"
+      },
+      {
+        "args": [
+          {
+            "label": "game_id",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          },
+          {
+            "label": "is_start",
+            "type": {
+              "displayName": ["bool"],
+              "type": 7
+            }
+          },
+          {
+            "label": "is_end",
+            "type": {
+              "displayName": ["bool"],
+              "type": 7
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "update_game_status",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 8
+        },
+        "selector": "0x61edb7d5"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "get_counter",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 14
+        },
+        "selector": "0x8100e7b8"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "get_tournament_creator",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 15
+        },
+        "selector": "0xb1d4bebc"
+      },
+      {
+        "args": [
+          {
+            "label": "index",
+            "type": {
+              "displayName": ["u32"],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_tournament_detail",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": ["ink", "MessageResult"],
+          "type": 11
+        },
+        "selector": "0x2413ec37"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "counter"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 1
+                }
+              },
+              "name": "tournament_creator"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 0
+                            }
+                          },
+                          "name": "total_player"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 4
+                            }
+                          },
+                          "name": "reward"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 1
+                            }
+                          },
+                          "name": "winner"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 5
+                            }
+                          },
+                          "name": "players"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 7
+                            }
+                          },
+                          "name": "is_start"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 7
+                            }
+                          },
+                          "name": "is_end"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 7
+                            }
+                          },
+                          "name": "is_claimed"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xffa3eee8",
+                              "ty": 0
+                            }
+                          },
+                          "name": "current_round"
+                        }
+                      ],
+                      "name": "GameDetail"
+                    }
+                  },
+                  "root_key": "0xffa3eee8"
+                }
+              },
+              "name": "games"
+            }
+          ],
+          "name": "Tournament"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 2,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": ["ink_primitives", "types", "AccountId"]
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 6
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "player",
+                "type": 1,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "score",
+                "type": 0,
+                "typeName": "u32"
+              },
+              {
+                "name": "active",
+                "type": 7,
+                "typeName": "bool"
+              },
+              {
+                "name": "is_loss",
+                "type": 7,
+                "typeName": "bool"
+              }
+            ]
+          }
+        },
+        "path": ["tournament", "tournament", "Player"]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 9
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": ["ink_primitives", "LangError"]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "total_player",
+                "type": 0,
+                "typeName": "u32"
+              },
+              {
+                "name": "reward",
+                "type": 4,
+                "typeName": "u128"
+              },
+              {
+                "name": "winner",
+                "type": 1,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "players",
+                "type": 5,
+                "typeName": "Vec<Player>"
+              },
+              {
+                "name": "is_start",
+                "type": 7,
+                "typeName": "bool"
+              },
+              {
+                "name": "is_end",
+                "type": 7,
+                "typeName": "bool"
+              },
+              {
+                "name": "is_claimed",
+                "type": 7,
+                "typeName": "bool"
+              },
+              {
+                "name": "current_round",
+                "type": 0,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": ["tournament", "tournament", "GameDetail"]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 5
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 1
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 1
+          },
+          {
+            "name": "E",
+            "type": 10
+          }
+        ],
+        "path": ["Result"]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 2,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": ["ink_primitives", "types", "Hash"]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": ["ink_env", "types", "NoChainExtension"]
+      }
+    }
+  ],
+  "version": "4"
+}
