@@ -113,7 +113,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="flex flex-col space-y-8 p-4 md:ml-64 mt-14 bg-white h-screen">
+      {/* <div className="flex flex-col space-y-8 p-4 md:ml-64 mt-14 bg-white h-screen">
         <h1 className="text-center text-[30px] font-bold">Dechess</h1>
         <div className="flex">
           <div className="w-2/3">
@@ -163,7 +163,7 @@ function App() {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

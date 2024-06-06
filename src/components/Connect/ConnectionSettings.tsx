@@ -7,16 +7,15 @@ import Button from '../Button/Button'
 import Input from '../Input/Input'
 import Popup from '../Popup/Popup'
 import { usePopups } from '../Popup/PopupProvider'
+import { ConnectButton, ConnectModal, useCurrentAccount, useWallets } from '@mysten/dapp-kit'
 
-const ChainWallet = {
-  network: 'alephzero-testnet',
-  wallet: 'subwallet-js',
-}
 export const resolverError = (key: string, type: string, message: string) => {
   return { [key]: { type, message } }
 }
 
 export function ConnectionSettings() {
+  const wallets = useWallets()
+
   const [isLoading, setIsLoading] = useState(false)
 
   const { addPopup } = usePopups()
@@ -174,22 +173,20 @@ export function ConnectionSettings() {
 
   if (!hasJWT()) {
     return (
-      <div
-        className="bg-gradient-to-r from-green-500 via-blue-500 to-green-500 !rounded-lg font-bold text-center text-white min-w-[150px] leading-[21px] py-1 cursor-pointer"
-        onClick={() => onHandleLogin()}
-      >
-        <div className="font-bold">Login</div>
-      </div>
+      <ConnectButton
+        className="!text-white bg-gradient-to-r from-green-500 via-blue-500 to-green-500 !rounded-lg font-bold  text-center text-white min-w-[150px] leading-[21px] py-1 cursor-pointer"
+        connectText={'Connect'}
+      />
     )
   }
 
-  if (hasJWT()) {
-    return (
-      <div className="bg-gradient-to-r from-green-500 via-blue-500 to-green-500 !rounded-lg font-bold text-center text-white min-w-[150px] leading-[21px] py-1 cursor-pointer">
-        <div className="font-bold">{}</div>
-      </div>
-    )
-  }
+  // if (hasJWT()) {
+  //   return (
+  //     <div className="bg-gradient-to-r from-green-500 via-blue-500 to-green-500 !rounded-lg font-bold text-center text-white min-w-[150px] leading-[21px] py-1 cursor-pointer">
+  //       <div className="font-bold">Connect Wallet</div>
+  //     </div>
+  //   )
+  // }
 
   // return (
   //   <Button
