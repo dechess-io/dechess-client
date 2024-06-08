@@ -137,7 +137,7 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="mx-auto py-8">
+          <div className="mx-auto px-6 py-8">
             <div>
               {hasJWT() ? (
                 <div className="w-full grid grid-cols-4 gap-8">{onShowGames()}</div>
