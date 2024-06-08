@@ -194,7 +194,7 @@ const Header: React.FC<{}> = () => {
             </li>
           </ul>
 
-          <div className="mx-auto flex flex-col space-y-4 w-full ">
+          {/* <div className="mx-auto flex flex-col space-y-4 w-full ">
             <div
               onClick={() => {
                 // navigate("/admin");
@@ -243,9 +243,8 @@ const Header: React.FC<{}> = () => {
             </div>
             <div className="mx-auto">
               <ConnectionSettings />
-              {/* <ConnectButton showBalance={false} /> */}
             </div>
-          </div>
+          </div> */}
         </div>
       </aside>
       <div

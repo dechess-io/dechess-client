@@ -187,37 +187,67 @@ const TournamentBoard: React.FC<{}> = ({}) => {
     // );
   }
 
+  // return (
+  //   <>
+  //     <Header />
+  //     <div className="text-white px-4 py-12 md:ml-64 mt-14 bg-gray-100 h-screen">
+  //       <div className="lottery-body px-2 py-2 border border-none rounded-xl ">
+  //         {/* <Button
+  //           className="bg-gradient-to-r from-cyan-500 to-blue-500 !rounded-xl font-bold text-white leading-[21px] !z-50"
+  //           onClick={() => onHandleCreateTournamnet()}
+  //         >
+  //           Create Tournament
+  //         </Button> */}
+  //         <Tabs key={'7s62'} value="1" orientation="vertical">
+  //           <TabsHeader
+  //             className="rounded-none w-32 bg-[#272a33] h-screen py-10"
+  //             indicatorProps={{
+  //               className:
+  //                 'bg-gray-900/50 shadow-none !text-gray-900 border-y-0 border-l-0 border-r-1 border-solid',
+  //             }}
+  //           >
+  //             {onShowTournament()}
+  //           </TabsHeader>
+  //           <TabsBody className="h-full">
+  //             {/* {onShowBoard()} */}
+  //             {onShowBoard2()}
+  //           </TabsBody>
+  //         </Tabs>
+  //       </div>
+  //     </div>
+  //     {/* <div className="space-y-8 p-4 md:ml-64 pl-0 pb-0 pt-14 h-screen relative w-auto min-w-fit flex flex-col bg-[#272a33] mx-auto text-white" id="app">
+
+  //     </div> */}
+  //   </>
+  // )
+
   return (
     <>
       <Header />
-      <div className="text-white px-4 py-12 md:ml-64 mt-14 bg-gray-100 h-screen">
-        <div className="lottery-body px-2 py-2 border border-none rounded-xl ">
-          <Button
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 !rounded-xl font-bold text-white leading-[21px] !z-50"
-            onClick={() => onHandleCreateTournamnet()}
-          >
-            Create Tournament
-          </Button>
-          <Tabs key={'7s62'} value="1" orientation="vertical">
-            <TabsHeader
-              className="rounded-none w-32 bg-[#272a33] h-screen py-10"
-              indicatorProps={{
-                className:
-                  'bg-gray-900/50 shadow-none !text-gray-900 border-y-0 border-l-0 border-r-1 border-solid',
-              }}
+      <div className="bg-gray-900 h-screen flex flex-col items-center justify-center text-center">
+        <div className="text-white">
+          <h1 className="text-4xl font-bold">Coming Soon</h1>
+          <p className="mt-4 text-lg">We're working on something awesome!</p>
+        </div>
+        <div className="mt-8">
+          <form action="#" method="post" className="flex items-center">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="py-2 px-4 bg-gray-800 text-white rounded-l-md focus:outline-none"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 py-2 px-4 text-white rounded-r-md hover:bg-blue-600 focus:outline-none"
             >
-              {onShowTournament()}
-            </TabsHeader>
-            <TabsBody className="h-full">
-              {/* {onShowBoard()} */}
-              {onShowBoard2()}
-            </TabsBody>
-          </Tabs>
+              Subscribe
+            </button>
+          </form>
+          <p className="mt-2 text-gray-400 text-sm">Be the first to know when we launch!</p>
         </div>
       </div>
-      {/* <div className="space-y-8 p-4 md:ml-64 pl-0 pb-0 pt-14 h-screen relative w-auto min-w-fit flex flex-col bg-[#272a33] mx-auto text-white" id="app">
-        
-      </div> */}
     </>
   )
 }
