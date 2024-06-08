@@ -62,7 +62,7 @@ const PopupCreateGame: React.FC<{}> = () => {
   }
 
   return (
-    <Popup className="bg-gray-50 min-w-[500px] max-w-[600px]">
+    <Popup className="bg-gray-100 min-w-[500px] max-w-[600px]">
       <div className="flex flex-col space-y-4">
         <h1 className="mb-4 text-center font-bold text-[20px]">Start Chess Match</h1>
         <div className="flex justify-between space-x-2 text-center">
@@ -76,10 +76,10 @@ const PopupCreateGame: React.FC<{}> = () => {
                 // onClick={() => setIsBettingMatch(false)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
-              <div>Free Match</div>
+              <div>Betting Match</div>
             </div>
             <div className="text-[14px]">
-              Available for Web2 and Web3 can be played together
+              Play and earn from winning
               <p className="font-bold">(Soon)</p>
             </div>
           </div>
@@ -96,14 +96,14 @@ const PopupCreateGame: React.FC<{}> = () => {
                 onClick={() => setIsBettingMatch(true)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
-              <div>Betting Match</div>
+              <div>Free Match</div>
             </div>
-            <div className="text-[14px]">Play and earn from winning</div>
+            <div className="text-[14px]">Available for Web2 and Web3 can be played together</div>
           </div>
         </div>
         <div className="mx-auto">
           <Button
-            className="cursor-pointer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 !rounded-3xl font-bold text-white min-w-[200px] leading-[21px]"
+            className="cursor-pointer bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 !rounded-xl font-bold text-white min-w-[200px] leading-[21px]"
             size="small"
             loading={isLoadingCreateGame}
             onClick={onHandleCreateMatch}

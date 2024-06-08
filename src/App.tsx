@@ -109,53 +109,44 @@ function App() {
     <>
       <Header />
       <div className="flex flex-col space-y-8 p-4 md:ml-64 mt-14 bg-white h-screen">
-        <h1 className="text-center text-[30px] font-bold">Dechess</h1>
-        <div className="flex">
-          <div className="w-2/3">
-            <div>
+        <div className="border-none rounded-xl bg-gradient-to-r from-gray-900 to-black min-h-screen">
+          <div className="mx-auto flex flex-col items-center justify-center text-center text-white px-6 py-12">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Bring Your Chess to the next level
+            </h1>
+            <p className="text-lg md:text-xl mb-8">
               <div className="text-[20px] font-bold">Your Chess, Your Narrative</div>
               <div>
                 Delve into a journey with bespoke pieces, face novel challenges, and traverse a
                 landscape where every move is a reflection of you
               </div>
-            </div>
-            <div>
-              <div className="text-[20px] font-bold">Maximize Your Chess Mastery</div>
               <div>
-                Train with our tools, solve complex puzzles, and analyze deeply. Outplay rivals move
-                by move
+                <div className="text-[20px] font-bold">Maximize Your Chess Mastery</div>
+                <div>
+                  Train with our tools, solve complex puzzles, and analyze deeply. Outplay rivals
+                  move by move
+                </div>
               </div>
-            </div>
-            <div>
-              <div className="text-[20px] font-bold">
-                Unlock Exclusive Rewards with In-Game NFTs
-              </div>
-              <div>Collect Dechess NFTs and unlock unmatched rewards</div>
+            </p>
+            <div className="space-x-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg"
+                onClick={() => onCreateGame()}
+              >
+                Start Play
+              </button>
             </div>
           </div>
-
-          <div className="w-1/3 flex flex-col space-y-4 justify-center items-center">
-            <div
-              onClick={onCreateGame}
-              className="min-w-[250px] text-center text-white px-6 py-4 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-[32px] font-bold w-fit border border-none rounded-xl cursor-pointer"
-            >
-              Play Online
+          <div className="mx-auto py-8">
+            <div>
+              {hasJWT() ? (
+                <div className="w-full grid grid-cols-4 gap-8">{onShowGames()}</div>
+              ) : (
+                <div>
+                  <div className="text-center font-bold">Login to play</div>
+                </div>
+              )}
             </div>
-            <div className="min-w-[250px] text-center text-white px-6 py-4 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-[32px] font-bold w-fit border border-none rounded-xl cursor-pointer">
-              Matching
-            </div>
-          </div>
-        </div>
-        <div className="py-8">
-          <div className="text-[32px] font-bold text-center">Lobbies</div>
-          <div>
-            {hasJWT() ? (
-              <div className="w-full grid grid-cols-4 gap-8">{onShowGames()}</div>
-            ) : (
-              <div>
-                <div className="text-center font-bold">Login to play</div>
-              </div>
-            )}
           </div>
         </div>
       </div>

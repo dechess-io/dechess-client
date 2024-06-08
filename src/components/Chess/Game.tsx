@@ -48,7 +48,7 @@ const Game: React.FC<{}> = () => {
   const navigate = useNavigate()
 
   const location = useLocation()
-
+  console.log('7s200:data', raw)
   useEffect(() => {
     restApi
       .get(`/load-game-v2`, {
@@ -311,9 +311,9 @@ const Game: React.FC<{}> = () => {
           <div className="flex justify-center items-center space-x-2">
             <ChessBishop color="white" size={26} />
             <p className="font-bold text-[14px]">
-              {gameRx.game.userB === DEFAULT_0X0_ADDRESS
+              {raw.player_2 === DEFAULT_0X0_ADDRESS
                 ? 'Waiting player...'
-                : truncateSuiTx(gameRx.game.userB)}
+                : truncateSuiTx(raw.player_2)}
             </p>
           </div>
         </div>
@@ -347,7 +347,7 @@ const Game: React.FC<{}> = () => {
         <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
           <div className="flex justify-center items-center space-x-2">
             <ChessBishop color="white" size={26} />
-            <p className="font-bold text-[14px]">{truncateSuiTx(gameRx.game.userA)}</p>
+            <p className="font-bold text-[14px]">{truncateSuiTx(raw.player_1)}</p>
           </div>
         </div>
       )
