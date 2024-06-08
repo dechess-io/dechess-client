@@ -14,8 +14,10 @@ import Button from '../Button/Button'
 import Header from '../Header/Header'
 import LoadingGame from '../Loading/LoadingGame'
 import Popup from '../Popup/Popup'
+import { useCurrentAccount } from '@mysten/dapp-kit'
 
 const Game: React.FC<{}> = () => {
+  const currentAccount = useCurrentAccount()
   const dispatch = useAppDispatch()
   const gameRx = useAppSelector(selectGame)
 
@@ -142,7 +144,14 @@ const Game: React.FC<{}> = () => {
   }
 
   function onSquareClick(square: Square) {
-    if (true) {
+    if (currentAccount) {
+      if (player1 !== currentAccount.address && turnPlay === 'w') {
+        return
+      }
+      if (player2 !== currentAccount.address && turnPlay === 'b') {
+        return
+      }
+
       setRightClickedSquares({})
 
       // from square
@@ -171,8 +180,6 @@ const Game: React.FC<{}> = () => {
 
         // valid move
         setMoveTo(square)
-        // console.log("7s200:move", moveFrom, square, game.turn());
-
         // if promotion move
         if (
           (foundMove.color === 'w' && foundMove.piece === 'p' && square[1] === '8') ||
@@ -298,77 +305,73 @@ const Game: React.FC<{}> = () => {
   }
 
   const onShowPlayerTop = () => {
-    return <></>
-    // if (!gameRx.game || !gameRx.game.userA || !gameRx.game.userB) {
-    //   return;
-    // }
-    // if (activeAccount?.address !== gameRx.game.userA && activeAccount?.address !== gameRx.game.userB) {
-    //   return (
-    //     <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //       <div className="flex justify-center items-center space-x-2">
-    //         <ChessBishop color="white" size={26} />
-    //         <p className="font-bold text-[14px]">{gameRx.game.userB === DEFAULT_0X0_ADDRESS ? "Waiting player..." : truncateSuiTx(gameRx.game.userB)}</p>
-    //       </div>
-    //     </div>
-    //   );
-    // } else {
-    //   if (activeAccount?.address === player2) {
-    //     return (
-    //       <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //         <div className="flex justify-center items-center space-x-2">
-    //           <ChessBishop color="white" size={26} />
-    //           <p className="font-bold text-[14px]">{truncateSuiTx(player1)}</p>
-    //         </div>
-    //       </div>
-    //     );
-    //   } else {
-    //     return (
-    //       <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //         <div className="flex justify-center items-center space-x-2">
-    //           <ChessBishop color="white" size={26} />
-    //           <p className="font-bold text-[14px]">{truncateSuiTx(player2)}</p>
-    //         </div>
-    //       </div>
-    //     );
-    //   }
-    // }
+    if (currentAccount?.address !== player1 && currentAccount?.address !== player2) {
+      return (
+        <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+          <div className="flex justify-center items-center space-x-2">
+            <ChessBishop color="white" size={26} />
+            <p className="font-bold text-[14px]">
+              {gameRx.game.userB === DEFAULT_0X0_ADDRESS
+                ? 'Waiting player...'
+                : truncateSuiTx(gameRx.game.userB)}
+            </p>
+          </div>
+        </div>
+      )
+    } else {
+      if (currentAccount?.address === player2) {
+        return (
+          <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+            <div className="flex justify-center items-center space-x-2">
+              <ChessBishop color="white" size={26} />
+              <p className="font-bold text-[14px]">{truncateSuiTx(player1)}</p>
+            </div>
+          </div>
+        )
+      } else {
+        return (
+          <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+            <div className="flex justify-center items-center space-x-2">
+              <ChessBishop color="white" size={26} />
+              <p className="font-bold text-[14px]">{truncateSuiTx(player2)}</p>
+            </div>
+          </div>
+        )
+      }
+    }
   }
 
   const onShowPlayerBottom = () => {
-    return <></>
-    // if (!gameRx.game || !gameRx.game.userA || !gameRx.game.userB) {
-    //   return;
-    // }
-    // if (activeAccount?.address !== gameRx.game.userA && activeAccount?.address !== gameRx.game.userB) {
-    //   return (
-    //     <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //       <div className="flex justify-center items-center space-x-2">
-    //         <ChessBishop color="white" size={26} />
-    //         <p className="font-bold text-[14px]">{truncateSuiTx(gameRx.game.userA)}</p>
-    //       </div>
-    //     </div>
-    //   );
-    // } else {
-    //   if (activeAccount?.address === player1) {
-    //     return (
-    //       <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //         <div className="flex justify-center items-center space-x-2">
-    //           <ChessBishop color="white" size={26} />
-    //           <p className="font-bold text-[14px]">{truncateSuiTx(player1)}</p>
-    //         </div>
-    //       </div>
-    //     );
-    //   } else {
-    //     return (
-    //       <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
-    //         <div className="flex justify-center items-center space-x-2">
-    //           <ChessBishop color="white" size={26} />
-    //           <p className="font-bold text-[14px]">{truncateSuiTx(player2)}</p>
-    //         </div>
-    //       </div>
-    //     );
-    //   }
-    // }
+    if (currentAccount?.address !== player1 && currentAccount?.address !== player2) {
+      return (
+        <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+          <div className="flex justify-center items-center space-x-2">
+            <ChessBishop color="white" size={26} />
+            <p className="font-bold text-[14px]">{truncateSuiTx(gameRx.game.userA)}</p>
+          </div>
+        </div>
+      )
+    } else {
+      if (currentAccount?.address === player1) {
+        return (
+          <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+            <div className="flex justify-center items-center space-x-2">
+              <ChessBishop color="white" size={26} />
+              <p className="font-bold text-[14px]">{truncateSuiTx(player1)}</p>
+            </div>
+          </div>
+        )
+      } else {
+        return (
+          <div className="px-4 py-2 bg-[#baca44] w-2/3 border border-none rounded-xl shadow-xl">
+            <div className="flex justify-center items-center space-x-2">
+              <ChessBishop color="white" size={26} />
+              <p className="font-bold text-[14px]">{truncateSuiTx(player2)}</p>
+            </div>
+          </div>
+        )
+      }
+    }
   }
 
   // const onShowDepositPopup = () => {
@@ -409,24 +412,14 @@ const Game: React.FC<{}> = () => {
   }
 
   const isOrientation = () => {
-    if (!gameRx.game || !gameRx.game.userA || !gameRx.game.userB || !player1) {
-      return
+    if (currentAccount?.address === player1) {
+      return 'white'
+    } else {
+      return 'black'
     }
-    // if (activeAccount?.address === player1 && player1 === gameRx.game.userA) {
-    //   return "white";
-    // } else {
-    //   return "black";
-    // }
-
-    return 'white'
   }
 
   const onShowGame = () => {
-    console.log('7s200:raw', raw, gameRx)
-    console.log(gameRx.game)
-    // if (gameRx.game !== null) {
-    //   return <LoadingGame />;
-    // } else {
     return (
       <div className="relative" style={{ height: '500px', width: '500px', cursor: 'pointer' }}>
         <div className="flex flex-col space-y-4">
@@ -492,7 +485,6 @@ const Game: React.FC<{}> = () => {
         </div>
       </div>
     )
-    //}
   }
 
   if (!game || !raw) {

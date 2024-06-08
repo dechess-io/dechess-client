@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@material-tailwind/react": "^2.1.8",
+    "@material-tailwind/react": "^2.1.9",
     "@mui/material": "^5.15.6",
     "@mysten/dapp-kit": "^0.14.5",
     "@mysten/sui": "^1.0.5",
