@@ -70,7 +70,7 @@ const Header: React.FC<{}> = () => {
                   }}
                   className="cursor-pointer flex ml-2 md:mr-7"
                 >
-                  <img src="/Dechess.png" className="h-[32px] w-[32px]" alt="Transca vault Logo" />
+                  <img src="/DeChess.png" className="h-[32px] w-[32px]" alt="Transca vault Logo" />
                 </div>
                 {/* <div className="">
                   <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 !rounded-xl font-bold text-white leading-[21px]" onClick={() => onHanleOpenPopUpGetRWAsNFT()}>
